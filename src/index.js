@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//npm install reactstrap yaptıktan sonra import ile bootstrap'de ekleniyor, ikisinide kullanabiliriz
 import  'bootstrap/dist/css/bootstrap.min.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
