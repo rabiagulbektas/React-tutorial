@@ -5,12 +5,23 @@ import ProductList from './ProductList';
 import { Container, Row, Col } from "reactstrap"
 
 export default class App extends Component {
-  state={currentCategory:""}
+    state={currentCategory:"", products:[ ] };
+    //componentDidMount bir hazır fonksiyondur. Yaşam döngüsü event'i için component yerleşti işlemi yapabilirsin diyoruz.
+    componentDidMount(){
+      this.getProducts();
+    }
     //ListGroupItem'a tıklandığında o kategorinin ismini verecek, bunun için onClick ile changeCategory  oluşturuldu
     //changeCategory fonksiyonuda bir props
     changeCategory = (category) => {
       this.setState({ currentCategory: category.categoryName });
     };
+
+    getProducts=()=>{
+      fetch("http://localhost:3000/products")
+      .then(response=>response.json())//önce gelen data json'döndürüldü
+      .then(data=>this.setState({products:data}));
+    };
+
   render(){
     //title bir props. props; bir component'den başka bir componente taşınan data,event
     //State ile
@@ -31,7 +42,7 @@ export default class App extends Component {
             <CategoryList currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} info={categoryInfo}/>
             </Col>
             <Col xs="9">
-            <ProductList currentCategory={this.state.currentCategory} info={productInfo}/>
+            <ProductList products={this.state.products} currentCategory={this.state.currentCategory} info={productInfo}/>
             </Col>
           </Row>
         </Container>

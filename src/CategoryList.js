@@ -5,14 +5,22 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 //export; public anlamına geliyor
 export default class CategoryList extends Component {
   //kategorilere özel bir data tutmak için state oluşturuldu
-  //burada state içime kategorileri tutmak için bir dizi oluşturuldu ve ellemanlar yazıldı
+  //burada state içime kategorileri tutmak için bir boş dizi oluşturuldu ve elemanları yerleştirmek için
+  //getCategories oluşturuldu.json'da olan elemanlar gidecek onun için fetch ile url belirtiyoruz
   state = {
-    categories: [
-      { categoryId: 1, categoryName: "Beverages" },
-      { categoryId: 2, categoryName: "Condiments" },
-    ]
+    categories: []
   };
 
+  //componentDidMount bir hazır fonksiyondur. Yaşam döngüsü event'i için component yerleşti işlemi yapabilirsin diyoruz.
+  componentDidMount(){
+    this.getCategories();
+  }
+
+  getCategories=()=>{
+    fetch("http://localhost:3000/categories")
+    .then(response=>response.json())//önce gelen data json'döndürüldü
+    .then(data=>this.setState({categories:data}));
+  };
 
   //render; değişen veriye göre componenti yeniler
   render() {
@@ -25,7 +33,7 @@ export default class CategoryList extends Component {
             this.state.categories.map((category) => (
               <ListGroupItem
                 onClick={() => this.props.changeCategory(category)}
-                key={category.categoryId}
+                key={category.id}
               >
                 {category.categoryName}
               </ListGroupItem>
