@@ -4,6 +4,11 @@ import Navi from './Navi';
 import ProductList from './ProductList';
 import { Container, Row, Col } from "reactstrap"
 function App() {
+  //title bir props. props; bir component'den başka bir componente taşınan data,event
+  //State ile
+  //propslar tutmak için nesne oluşturduk
+  let productInfo={ title:"Product list"}
+  let categoryInfo={title:"Category list"}
   return (
     //Navi componenti app'in içerisinde olacağı için onu burada <Navi></Navi> ile yerleştiricez, ve import edicez
     //Navi component gini CategoryList ve ProductList componentleri de dahil edildi
@@ -15,10 +20,10 @@ function App() {
         <Row>
           {/* Burada xs ile row'u 12 parçaya ayırıyor */}
           <Col xs="3">
-          <CategoryList />
+          <CategoryList info={categoryInfo}/>
           </Col>
           <Col xs="9">
-          <ProductList />
+          <ProductList info={productInfo}/>
           </Col>
         </Row>
       </Container>
