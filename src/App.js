@@ -5,7 +5,9 @@ import ProductList from './ProductList';
 import { Container, Row, Col } from "reactstrap"
 
 export default class App extends Component {
-    state={currentCategory:"", products:[ ] };
+  //componente özel datayı state ile tutuyoruz
+    state={currentCategory:"", products:[ ], cart:[] };
+
     //componentDidMount bir hazır fonksiyondur. Yaşam döngüsü event'i için component yerleşti işlemi yapabilirsin diyoruz.
     componentDidMount(){
       this.getProducts();
@@ -13,7 +15,9 @@ export default class App extends Component {
     //ListGroupItem'a tıklandığında o kategorinin ismini verecek, bunun için onClick ile changeCategory  oluşturuldu
     //changeCategory fonksiyonuda bir props
     changeCategory = (category) => {
+      //Tıklanılan kategorinin ismini alacak ve currentCategory'e atacak
       this.setState({ currentCategory: category.categoryName });
+      //Kategori id'sine göre ürünleri getirmek için getProducts(category.id)
       this.getProducts(category.id);
     };
 
@@ -27,6 +31,20 @@ export default class App extends Component {
       .then(data=>this.setState({products:data}));
     };
 
+    //ürün ekleme işlemi için addToCart fonksiyonu oluşturuldu
+  addToCart=(product)=>{
+    let newCart=this.state.cart;
+    var addedItem=newCart.find(c=>c.product.id===product.id);
+    //aynı eleman varsa tekrar eklemeyecek adedini 1 arttıracak
+    if(addedItem){
+      addedItem.quantity+=1;
+    }
+    else{//ürün hic eklenmediyse ekle
+      newCart.push({product:product,quantity:1});
+    }
+    this.setState({cart:newCart});
+  }
+
   render(){
     //title bir props. props; bir component'den başka bir componente taşınan data,event
     //State ile
@@ -38,16 +56,14 @@ export default class App extends Component {
       //Navi component gini CategoryList ve ProductList componentleri de dahil edildi
       <div>
         <Container>
-          <Row>
-            <Navi></Navi>
-          </Row>
+            <Navi cart={this.state.cart}/>
           <Row>
             {/* Burada xs ile row'u 12 parçaya ayırıyor */}
             <Col xs="3">
             <CategoryList currentCategory={this.state.currentCategory} changeCategory={this.changeCategory} info={categoryInfo}/>
             </Col>
             <Col xs="9">
-            <ProductList products={this.state.products} currentCategory={this.state.currentCategory} info={productInfo}/>
+            <ProductList products={this.state.products} addToCart={this.addToCart} currentCategory={this.state.currentCategory} info={productInfo}/>
             </Col>
           </Row>
         </Container>

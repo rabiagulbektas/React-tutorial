@@ -1,10 +1,11 @@
 //rcc deyip enter'a basınca direk bir class component oluşturuluyor
 //Bir component oluşturuldu
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Table,Button } from "reactstrap";
 
 //export; public anlamına geliyor
 export default class ProductList extends Component {
+  
   //render; değişen veriye göre componenti yeniler
   render() {
     return (
@@ -20,6 +21,7 @@ export default class ProductList extends Component {
               <th>Unit Price</th>
               <th>Quantity Per Unit</th>
               <th>Units In Stock</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -32,6 +34,8 @@ export default class ProductList extends Component {
                  <td>{product.unitPrice}</td>
                  <td>{product.quantityPerUnit}</td>
                  <td>{product.unitsInStock}</td>
+                 {/* ürün ekleme işlemi için onClick event tanımlandı */}
+                 <td><Button onClick={()=>this.props.addToCart(product)} color="info">add</Button></td>
                 </tr>
               ))
             }

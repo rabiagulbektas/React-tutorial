@@ -16,6 +16,7 @@ export default class CategoryList extends Component {
     this.getCategories();
   }
 
+  //kategorileri listeleyecek
   getCategories=()=>{
     fetch("http://localhost:3000/categories")
     .then(response=>response.json())//önce gelen data json'döndürüldü
