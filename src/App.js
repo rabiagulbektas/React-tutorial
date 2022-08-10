@@ -45,6 +45,12 @@ export default class App extends Component {
     this.setState({cart:newCart});
   }
 
+  //Sepetten ürün silme için
+  removeFromCart=(product)=>{
+    let newCart=this.state.cart.filter(c=>c.product.id!==product.id)
+    this.setState({cart:newCart})
+  }
+
   render(){
     //title bir props. props; bir component'den başka bir componente taşınan data,event
     //State ile
@@ -56,7 +62,7 @@ export default class App extends Component {
       //Navi component gini CategoryList ve ProductList componentleri de dahil edildi
       <div>
         <Container>
-            <Navi cart={this.state.cart}/>
+            <Navi removeFromCart={this.removeFromCart} cart={this.state.cart}/>
           <Row>
             {/* Burada xs ile row'u 12 parçaya ayırıyor */}
             <Col xs="3">
