@@ -18,15 +18,19 @@ export default class CartSummary extends Component {
           Your Cart
         </DropdownToggle>
         <DropdownMenu right>
+          {/* Your Cart iminde ürünler listelenecek */}
           {this.props.cart.map((cartItem) => (
             <DropdownItem key={cartItem.product.id}>
+              {/* Ürün silme işlemi için */}
                 <Badge color="danger" onClick={()=>this.props.removeFromCart(cartItem.product)}>X</Badge>
               {cartItem.product.productName}
+              {/* Hangi üründen kaç tane eklendiğini gösterir */}
               <Badge color="success">{cartItem.quantity}</Badge>
             </DropdownItem>
           ))}
           <DropdownItem divider />
           <DropdownItem> 
+            {/* cart'a yönlendirme yapıldı */}
             <Link to="cart"> Go to cart</Link>
           </DropdownItem>
         </DropdownMenu>
@@ -42,6 +46,7 @@ export default class CartSummary extends Component {
   }
   render() {
     return <div>
+      {/* Sepete ürün yüklenip yüklenmemesi duruma göre çıktı verecek */}
         {this.props.cart.length>0?this.renderSummary():this.renderEmptyCart()}
     </div>;
   }

@@ -1,4 +1,3 @@
-//rcc deyip enter'a basınca direk bir class component oluşturuluyor
 //Bir component oluşturuldu
 import React, { Component } from "react";
 import { Table,Button } from "reactstrap";

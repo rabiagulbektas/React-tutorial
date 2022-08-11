@@ -5,7 +5,6 @@ import ProductList from "./ProductList";
 import { Container, Row, Col } from "reactstrap";
 import alertify from "alertifyjs";
 import {Route,Switch} from 'react-router-dom';
-// import { Routes, Route } from "react-router-dom";
 import NotFount from "./NotFound";
 import CartList from "./CartList";
 import FormDemo1 from "./FormDemo1";
@@ -83,7 +82,6 @@ export default class App extends Component {
             </Col>
             <Col xs="9">
               <Switch>
-              {/* <Routes> */}
                 <Route
                   exact
                   path="/"
@@ -110,7 +108,6 @@ export default class App extends Component {
                 <Route  path="/form1" component={FormDemo1}/>
                 <Route  path="/form2" component={FormDemo2}/>
                 <Route component={NotFount} />
-              {/* </Routes> */}
               {/* Switch sırasıyla rootları gezmeye yarıyor */}
               </Switch>
             </Col>

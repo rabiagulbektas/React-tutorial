@@ -1,11 +1,10 @@
-//rcc deyip enter'a basınca direk bir class component oluşturuluyor
 //Bir component oluşturuldu
 import React, { Component } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 //export; public anlamına geliyor
 export default class CategoryList extends Component {
   //kategorilere özel bir data tutmak için state oluşturuldu
-  //burada state içime kategorileri tutmak için bir boş dizi oluşturuldu ve elemanları yerleştirmek için
+  //burada state içine kategorileri tutmak için bir boş dizi oluşturuldu ve elemanları yerleştirmek için
   //getCategories oluşturuldu.json'da olan elemanlar gidecek onun için fetch ile url belirtiyoruz
   state = {
     categories: []
