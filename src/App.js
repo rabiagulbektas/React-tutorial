@@ -10,8 +10,6 @@ import CartList from "./CartList";
 import FormDemo1 from "./FormDemo1";
 import FormDemo2 from "./FormDemo2";
 
-//Öncelikle Tutorial kloseri açılmış, içerisine ilk olarak Intro klasörü oluşturulmuş ve içerisine tüm bu kodlar yazılmıştız
-//Daha sonra ise projenin ilerleyen zamanlarında yine Tutorial içerisine bir api klasörü oluşturulmuş ve içine db.json eklenmiştir(GitHub'ta bu kısım yok.)
 
 export default class App extends Component {
   //componente özel datayı state ile tutuyoruz
